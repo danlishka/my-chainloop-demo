@@ -60,7 +60,23 @@ jobs:
           curl -sfL https://docs.chainloop.dev/install.sh | bash -s -- --version v${{ env.CHAINLOOP_VERSION }}
 
       - name: Initialize Attestation
-        run: chainloop attestation init --contract-revision 1
+        run: chainloop attestation init # --contract-revision 1
+
+###
+
+      - name: Add Container Image Artifact
+        run: chainloop attestation add --name image --value ghcr.io/chainloop-dev/integration-demo:${{ github.ref_name }}
+
+      - name: Add SBOM Artifact
+        run: chainloop attestation add --name sbom --value /tmp/sbom.cyclonedx.json
+
+      - name: Add Binary Artifact
+        run: |
+          BINARY_PATH="$(echo -n '${{ steps.release.outputs.metadata }}' | jq -r '"dist/" + .project_name + "_" + .version + "_" + .runtime.goos + "_" + .runtime.goarch + ".tar.gz"')"
+
+          chainloop attestation add --name binary --value ${BINARY_PATH}
+
+###
 
       - name: Finish and Record Attestation
         if: ${{ success() }}

@@ -1,12 +1,16 @@
-Source code used to demo the integration with Chainloop [seen here](https://www.youtube.com/watch?v=iBTVpjNaE6M)
+# Chainloop Demo
 
-Note: Repository forked from https://github.com/bopbi/simple-todo
+Source code used:
+- in Chainloop documentation, how-to guides anbd blog posts,
+- to demo the integration with Chainloop [seen here](https://www.youtube.com/watch?v=iBTVpjNaE6M).
 
-# simple-todo
+Note: The example simple-todo app has been taken from https://github.com/bopbi/simple-todo
+
+## simple-todo
 
 A Simple REST Server app, using golang and sqlite, build for testing client app, the SQLITE file already contain some example data
 
-## REST API
+### REST API
 
 - GET ALL
 
